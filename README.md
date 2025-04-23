@@ -4,18 +4,26 @@ A skeleton flask app to use for a coding challenge.
 
 ## Install:
 
-You can use a virtual environment (conda, venv, etc):
+Configured virtual environment (venv) using below commands:
 ```
-conda env create -f environment.yml
-source activate user-profiles
+python3 -m venv .venv
+source .venv/bin/activate
+
 ```
 
-Or just pip install from the requirements file
+Did "pip install" from the requirements file
 ``` 
 pip install -r requirements.txt
-```
 
-## Running the code
+```
+## Code Build
+
+```
+# Skeleton code is developed using VSCode.
+ Also, in the code, I hard-coded the Github token and removed with a placeholder before commiting to Github. 
+
+Flask run
+
 
 ### Spin up the service
 

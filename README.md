@@ -22,6 +22,7 @@ pip install -r requirements.txt
 # Skeleton code is developed using VSCode.
  The Github token is maintained in config file and is read by python code. However, the the token is removed from config file at the time of comitting the code to github. 
 
+Also, Insomnia client is used for testing with REST API call. 
 ```
 
 ### Spin up the service

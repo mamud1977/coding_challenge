@@ -1,17 +1,75 @@
-import logging
+from github import Github
+from flask import Flask, request
+from github import GithubException
 
-import flask
-from flask import Response
+app = Flask(__name__)
 
-app = flask.Flask("user_profiles_api")
-logger = flask.logging.create_logger(app)
-logger.setLevel(logging.INFO)
+token = "<ADD YOUR GITHUB TOKEN>"
+g = Github(token)
 
+@app.get("/org/<string:orgname>")   
+def get_org_by_name(orgname):
+    
+    try:
+        org_name = orgname
+        org = g.get_organization(org_name)
 
-@app.route("/health-check", methods=["GET"])
-def health_check():
-    """
-    Endpoint to health check API
-    """
-    app.logger.info("Health Check!")
-    return Response("All Good!", status=200)
+        # List organization members
+        members = org.get_members()
+        members_list = []
+        for member in members:
+            members_list.append(member.login)
+            print(member.login)
+
+        # Get organization repositories
+        repos = org.get_repos()
+
+        original_repos = []
+        forked_repos = []
+
+        # Iterate through each repository
+        repository_list =[]
+        for repo in repos:
+
+            if repo.fork:
+                original_repos = False
+                forked_repos = True
+            else:
+                original_repos = True
+                forked_repos = False
+            
+            # Print the number of watchers
+            watchers_count = repo.watchers_count
+
+            # Get the list of languages
+            languages = repo.get_languages()
+            languages_list =[]
+            for language in languages:
+                languages_list.append(language)
+
+            repository = {
+                "RepositoryName": repo.name,
+                "original_repos": original_repos,
+                "forked_repos": forked_repos,
+                "watchers_count": watchers_count,
+                "languages_list": languages_list
+            }
+        
+            repository_list.append(repository)
+        
+        GithubOrganization = {
+                "OrganizationName": org.name,
+                "OrganizationID": org.id,
+                "Description": org.description,
+                "PublicRepos": org.public_repos,
+                "PrivateRepos": org.total_private_repos,
+                "Members": members_list,
+                "Repositories": repository_list
+            }
+
+        return GithubOrganization
+    except GithubException as e:
+        return {"status": f"Error accessing GitHub API: {e.status} - {e.data['message']}"}
+    except Exception as e:
+        return {f"An unexpected error occurred: {e}"}   
+    

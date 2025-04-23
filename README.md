@@ -28,10 +28,7 @@ Flask run
 
 ### Making Requests
 
-```
-curl -i "http://127.0.0.1:5000/health-check"
-
-<Mamud>: 
+``` 
 http://127.0.0.1:5000/org/mailchimp
 ```
 

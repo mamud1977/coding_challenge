@@ -1,5 +1,5 @@
 [dev]
-git_token = <ADD YOUR GITHUB TOKEN HERE>
+git_token = <ADD YOUR GITHUB TOKEN HERE WITHOUT QUOTE OR DOUBLE QUOTE>
 aws_username = 
 aws_password = 
 

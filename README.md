@@ -21,10 +21,7 @@ pip install -r requirements.txt
 
 ```
 # start up local server
-python -m run
 
-
-<Mamud>: 
 Flask run
 
 ```

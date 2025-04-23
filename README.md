@@ -24,7 +24,7 @@ pip install -r requirements.txt
 python -m run
 
 
-Mamud: 
+`#ff0000` Mamud: 
 Flask run
 ```
 

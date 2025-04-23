@@ -20,7 +20,7 @@ pip install -r requirements.txt
 
 ```
 # Skeleton code is developed using VSCode.
- Also, in the code, I hard-coded the Github token and removed with a placeholder before commiting to Github. 
+ The Github token is maintained in config file and is read by python code. However, the the token is removed from config file at the time of comitting the code to github. 
 
 ```
 
